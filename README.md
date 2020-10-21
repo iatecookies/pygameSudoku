@@ -1,4 +1,4 @@
-# work.py
+# Puzzle.py
 ```
 Terminal based Sudoku game. U can play a random generated sudoku.
 TO DO:
@@ -11,7 +11,8 @@ TO DO:
 # GUI.py
 ```
 This is a sudoku solver using the backtracking algorithm with a graphical GUI
-Run GUI.py to play sudoku.
+
+Credits: Tech with Tim
 ```
 
 
@@ -23,8 +24,6 @@ Click a box and hit the number on your keyboard to pencil in a number. To confir
 
 ## How to install
 ```
-/**
-* pip3 install pygame
-* command: python3 GUI.py
-**/
+pip3 install pygame
+command: python3 GUI.py
 ```
