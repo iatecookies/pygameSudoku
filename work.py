@@ -1,6 +1,6 @@
 import random
 import time
-
+random.seed(time.time())
 board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -27,13 +27,13 @@ def solve(board):
             board[row][col] = i # add into the board
             # recursively try finish solution
             # if we cant solve board then we reset that value
-
             if solve(board):
                 return True
             # Backtracks if the above if doesnt return True
             board[row][col] = 0
-
     return False
+
+
 
 def isValid (board, num, pos):
     # For each row check columns
@@ -57,12 +57,15 @@ def isValid (board, num, pos):
     return True
 
 
+
 def findEmpty(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
             if board[i][j] == 0:
                 return (i, j) # row, col
     return None
+
+
 
 def printBoard(board):
     # Row of board, Length of Board is a list
@@ -82,64 +85,46 @@ def printBoard(board):
                 print(str(board[i][j]) + " ", end="")
 
 
-
 def mutate(board):
-    # Swap Rows
-    random.seed(time.time())
-    row1 = random.randint(0, len(board[0]) - 1)
-    row2 = random.randint(0, len(board[0]) - 1)
-    output = f"row is {row1} and row2 is {row2}"
-    #print (output)
+    numberList = [1,2,3,4,5,6,7,8,9]
+    while len(numberList) > 1:
+        swapNumber1 = random.choice(numberList)
+        swapNumber2 = random.choice(numberList)
 
-    for i in range(len(board[0])):
-        temp = board[row1][i]
-        board[row1][i] = board[row2][i]
-        board[row2][i] = temp
+        if swapNumber1 in numberList and swapNumber2 in numberList and swapNumber1 != swapNumber2:
+            numberList.remove(swapNumber1)
+            numberList.remove(swapNumber2)
+            output = f"swapNumber1 is {swapNumber1} and swapNumber2 is {swapNumber2}"
+            #print (output)
 
-    # Swap cols
-    random.seed(time.time())
-    col1 = random.randint(0, len(board) - 1)
-    col2 = random.randint(0, len(board) - 1)
-    output = f"col is {col1} and col2 is {col2}"
-    #print (output)
-
-    for i in range(len(board)):
-        temp = board[i][col1]
-        board[i][col1] = board[i][col2]
-        board[i][col2] = temp
-
-
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == swapNumber1:
+                    board[i][j] = swapNumber2
+                elif board[i][j] == swapNumber2:
+                    board[i][j] = swapNumber1
 
 
 def generatePuzzle(board):
-    random.seed(time.time())
     row = random.randint(0, len(board[0]) - 1)
     col = random.randint(0, len(board) - 1)
     num = random.randint(1, 9)
     output = f"row is {row}, column is {col} and random number is {num}"
-    print (output)
-
+    #print (output)
     # makes a 'random' puzzle
     board[row][col] = num
     solve(board)
 
+    # print("First board")
+    # printBoard(board)
 
-
-    print("First board")
-    printBoard(board)
-
-    mutateTimes = 1000
-    while mutateTimes > 0:
-        mutate(board)
-        mutateTimes = mutateTimes - 1
-
-    print("Mutated board")
-    printBoard(board)
+    mutate(board)
+    # print("Mutated board")
+    # printBoard(board)
 
     # Fill it with Empty Zeroes
     emptyCubes = random.randint(20, 40)
     while emptyCubes > 0:
-        random.seed(time.time())
         row1 = random.randint(0, len(board[0]) - 1)
         col1 = random.randint(0, len(board) - 1)
         if board[row1][col1] != 0:
@@ -147,13 +132,8 @@ def generatePuzzle(board):
             emptyCubes = emptyCubes - 1
 
 
-    print("Empty board")
-    printBoard(board)
-
-    
 generatePuzzle(board)
-
-
-print("######################################################")
-solve(board)
 printBoard(board)
+# print("###########################")
+# solve(board)
+# printBoard(board)
