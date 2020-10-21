@@ -1,29 +1,21 @@
+import random
+import time
+
 board = [
-    [7, 8, 0, 4, 0, 0, 1, 2, 0],
-    [6, 0, 0, 0, 7, 5, 0, 0, 9],
-    [0, 0, 0, 6, 0, 1, 0, 7, 8],
-    [0, 0, 7, 0, 4, 0, 2, 6, 0],
-    [0, 0, 1, 0, 5, 0, 9, 3, 0],
-    [9, 0, 4, 0, 6, 0, 0, 0, 5],
-    [0, 7, 0, 3, 0, 0, 0, 1, 2],
-    [1, 2, 0, 0, 0, 7, 4, 0, 0],
-    [0, 4, 9, 2, 0, 6, 0, 0, 7]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
-""""
-board = [
-    [0, 8, 0, 4, 0, 0, 1, 2, 0],
-    [0, 0, 0, 0, 7, 5, 0, 0, 9],
-    [0, 0, 0, 6, 0, 1, 0, 7, 8],
-    [0, 0, 7, 0, 4, 0, 2, 6, 0],
-    [0, 0, 1, 0, 5, 0, 9, 3, 0],
-    [0, 0, 4, 0, 6, 0, 0, 0, 5],
-    [0, 0, 0, 3, 0, 0, 0, 1, 2],
-    [0, 0, 0, 0, 0, 7, 4, 0, 0],
-    [0, 4, 9, 2, 0, 6, 0, 0, 7]
-]
-""""
+
+
+
 def solve(board):
-    print(board)
     find = findEmpty(board)
     if not find:
         return True
@@ -44,7 +36,6 @@ def solve(board):
     return False
 
 def isValid (board, num, pos):
-
     # For each row check columns
     for i in range(len(board[0])):
         if board[pos[0]][i] == num and pos[1] != i:
@@ -63,7 +54,6 @@ def isValid (board, num, pos):
         for j in range(xBox * 3, xBox*3 + 3):
             if board[i][j] == num and (i,j) != pos:
                 return False
-
     return True
 
 
@@ -91,7 +81,79 @@ def printBoard(board):
             else:
                 print(str(board[i][j]) + " ", end="")
 
-printBoard(board)
+
+
+def mutate(board):
+    # Swap Rows
+    random.seed(time.time())
+    row1 = random.randint(0, len(board[0]) - 1)
+    row2 = random.randint(0, len(board[0]) - 1)
+    output = f"row is {row1} and row2 is {row2}"
+    #print (output)
+
+    for i in range(len(board[0])):
+        temp = board[row1][i]
+        board[row1][i] = board[row2][i]
+        board[row2][i] = temp
+
+    # Swap cols
+    random.seed(time.time())
+    col1 = random.randint(0, len(board) - 1)
+    col2 = random.randint(0, len(board) - 1)
+    output = f"col is {col1} and col2 is {col2}"
+    #print (output)
+
+    for i in range(len(board)):
+        temp = board[i][col1]
+        board[i][col1] = board[i][col2]
+        board[i][col2] = temp
+
+
+
+
+def generatePuzzle(board):
+    random.seed(time.time())
+    row = random.randint(0, len(board[0]) - 1)
+    col = random.randint(0, len(board) - 1)
+    num = random.randint(1, 9)
+    output = f"row is {row}, column is {col} and random number is {num}"
+    print (output)
+
+    # makes a 'random' puzzle
+    board[row][col] = num
+    solve(board)
+
+
+
+    print("First board")
+    printBoard(board)
+
+    mutateTimes = 1000
+    while mutateTimes > 0:
+        mutate(board)
+        mutateTimes = mutateTimes - 1
+
+    print("Mutated board")
+    printBoard(board)
+
+    # Fill it with Empty Zeroes
+    emptyCubes = random.randint(20, 40)
+    while emptyCubes > 0:
+        random.seed(time.time())
+        row1 = random.randint(0, len(board[0]) - 1)
+        col1 = random.randint(0, len(board) - 1)
+        if board[row1][col1] != 0:
+            board [row1][col1] = 0
+            emptyCubes = emptyCubes - 1
+
+
+    print("Empty board")
+    printBoard(board)
+
+    
+generatePuzzle(board)
+
+
+print("######################################################")
 solve(board)
-print("###########################################")
 printBoard(board)
