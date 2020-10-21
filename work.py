@@ -13,7 +13,11 @@ board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
-
+def resetBoard(board):
+    for i in range(len(board[0])):
+        for j in range(len(board)):
+            board[i][j] = 0
+    return board
 
 def solve(board):
     find = findEmpty(board)
@@ -131,9 +135,30 @@ def generatePuzzle(board):
             board [row1][col1] = 0
             emptyCubes = emptyCubes - 1
 
+    return board
 
-generatePuzzle(board)
-printBoard(board)
+run = True
+print("Welcome to the Sudoku Puzzle")
+while run:
+    action = input("Press (1) for a new puzzle, (2) to solve it or (3) to quit \n")
+
+    if action == '1':
+        resetBoard(board)
+        generatePuzzle(board)
+        printBoard(board)
+    elif action == '2':
+        solve(board)
+        printBoard(board)
+    elif action == '3':
+        run = False
+    else:
+        run = False
+
+
+
+
+# generatePuzzle(board)
+# printBoard(board)
 # print("###########################")
 # solve(board)
 # printBoard(board)
