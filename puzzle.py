@@ -1,6 +1,7 @@
 import random
 import time
 random.seed(time.time())
+
 board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -13,11 +14,15 @@ board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
+
+
 def resetBoard(board):
     for i in range(len(board[0])):
         for j in range(len(board)):
             board[i][j] = 0
     return board
+
+
 
 def solve(board):
     find = findEmpty(board)
@@ -51,11 +56,11 @@ def isValid (board, num, pos):
             return False
 
     # Check box
-    xBox = pos[1] // 3
-    yBox = pos[0] // 3
+    xBox = (pos[1] // 3) * 3
+    yBox = (pos[0] // 3) * 3
 
-    for i in range(yBox*3, yBox*3 + 3):
-        for j in range(xBox * 3, xBox*3 + 3):
+    for i in range(yBox, yBox + 3):
+        for j in range(xBox, xBox + 3):
             if board[i][j] == num and (i,j) != pos:
                 return False
     return True
@@ -118,10 +123,8 @@ def generatePuzzle(board):
     # makes a 'random' puzzle
     board[row][col] = num
     solve(board)
-
     # print("First board")
     # printBoard(board)
-
     mutate(board)
     # print("Mutated board")
     # printBoard(board)
@@ -134,31 +137,27 @@ def generatePuzzle(board):
         if board[row1][col1] != 0:
             board [row1][col1] = 0
             emptyCubes = emptyCubes - 1
-
     return board
 
-run = True
-print("Welcome to the Sudoku Puzzle")
-while run:
-    action = input("Press (1) for a new puzzle, (2) to solve it or (3) to quit \n")
-
-    if action == '1':
-        resetBoard(board)
-        generatePuzzle(board)
-        printBoard(board)
-    elif action == '2':
-        solve(board)
-        printBoard(board)
-    elif action == '3':
-        run = False
-    else:
-        run = False
 
 
+def main (board):
+    run = True
+    print("Welcome to the Sudoku Puzzle")
+    while run:
+        action = input("Press (1) for a new puzzle, (2) to solve it or (3) to quit \n")
 
+        if action == '1':
+            resetBoard(board)
+            generatePuzzle(board)
+            printBoard(board)
+        elif action == '2':
+            solve(board)
+            printBoard(board)
+        elif action == '3':
+            run = False
+        else:
+            run = False
 
-# generatePuzzle(board)
-# printBoard(board)
-# print("###########################")
-# solve(board)
-# printBoard(board)
+if __name__ == "__main__":
+    main(board)
