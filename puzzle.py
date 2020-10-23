@@ -95,6 +95,11 @@ def printBoard(board):
 
 
 def mutate(board):
+    # Reverse board. from top to down is from down to top
+    # print("BEFORE")
+    # printBoard(board)
+    # board.reverse()
+
     numberList = [1,2,3,4,5,6,7,8,9]
     while len(numberList) > 1:
         swapNumber1 = random.choice(numberList)
@@ -129,8 +134,8 @@ def generatePuzzle(board):
     # print("Mutated board")
     # printBoard(board)
 
-    # Fill it with Empty Zeroes
-    emptyCubes = random.randint(20, 40)
+    #Fill it with Empty Zeroes
+    emptyCubes = random.randint(40, 60)
     while emptyCubes > 0:
         row1 = random.randint(0, len(board[0]) - 1)
         col1 = random.randint(0, len(board) - 1)
@@ -146,7 +151,6 @@ def main (board):
     print("Welcome to the Sudoku Puzzle")
     while run:
         action = input("Press (1) for a new puzzle, (2) to solve it or (3) to quit \n")
-
         if action == '1':
             resetBoard(board)
             generatePuzzle(board)
