@@ -22,7 +22,8 @@ A 2D survival game. You start as a small fish swimming about in an infinitely bi
 - [ ] Educative elements
 - [ ] Spawning of sprites
 
-[See more](https://trello.com/b/NIL9COog/survival-of-the-fishest)
+[See more on Trello](https://trello.com/b/NIL9COog/survival-of-the-fishest)
+
 ```
 
 ## Installation and running
