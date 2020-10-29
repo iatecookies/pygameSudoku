@@ -15,15 +15,12 @@ A 2D survival game. You start as a small fish swimming about in an infinitely bi
 - Music
 - Optimization FPS/dirty rectangles
 
-### Work in Progress
+######  Work in Progress
+- [X] AI control
 - [ ] Sprite design
 - [ ] World design
-- [X] AI control
 - [ ] Educative elements
 - [ ] Spawning of sprites
-
-[See more on Trello](https://trello.com/b/NIL9COog/survival-of-the-fishest)
-
 ```
 
 ## Installation and running
