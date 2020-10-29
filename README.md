@@ -21,8 +21,8 @@ The game also raises the player's environmental awareness.
 - Optimization FPS/dirty rectangles
 ```
 
-######  Work in Progress
-```
+### Work in Progress
+
 - [X] AI control
 - [ ] Sprite design
 - [ ] World design
@@ -30,7 +30,7 @@ The game also raises the player's environmental awareness.
 - [ ] Spawning of sprites
 
 Product backlog: https://trello.com/b/NIL9COog/survival-of-the-fishest
-```
+
 
 ## Installation and running
 ```
