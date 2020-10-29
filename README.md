@@ -1,29 +1,51 @@
-# Puzzle.py
+# Survival of the Fishest
 ```
-Terminal based Sudoku game. U can play a random generated sudoku.
-TO DO:
-- [X] Understand the basic of backtracking
-- [X] Generate a random sudoku puzzle
-- [ ] Understand GUI.py
+A 2D survival game. You start as a small fish swimming about in an infinitely big world. Eating food and other fish allows you to grow and eat larger food. Be careful, though! If you eat any dangerous objects such as plastic, you will die. You also need to avoid any natural enemies such as predators and poisonous animals and plants. It's an educational game in which you learn what the fish eats and what its natural enemies are. The game also raises the player's environmental awareness.
 ```
 
-
-# GUI.py
+## Game Features
 ```
-This is a sudoku solver using the backtracking algorithm with a graphical GUI
+- Swimming/acceleration
+- Enemey damage/dying
+- Compass that leads you to an object in the game
+- Boundaries against rock, surface or bottom of the ocean
+- AI movement/controller
+- Pause/Main menu
+- Score/highscore
+- Music
+- Optimization FPS/dirty rectangles
 
-Credits: Tech with Tim
+### Work in Progress
+- [ ] Sprite design
+- [ ] World design
+- [X] AI control
+- [ ] Educative elements
+- [ ] Spawning of sprites
+
+[See more](https://trello.com/b/NIL9COog/survival-of-the-fishest)
 ```
 
-
-## Instructions
-```
-Click a box and hit the number on your keyboard to pencil in a number. To confirm that value press the ENTER key on that box. To delete a pencil in you can click DEL. Finally to solve the board press SPACE, sit back and watch the algorithm run.
-```
-
-
-## How to install
+## Installation and running
 ```
 pip3 install pygame
-command: python3 GUI.py
+command: python3 main.py
+```
+
+## Game controls
+```
+- W A S D keys are for moving up, left, down, right
+- Holding SHIFT key while pressing one of the move keys will accelerate your
+movement
+- P key is for pausing the music
+- ESC key is for going back into the menu
+```
+
+
+## Contributing
+```
+Ralph Mathijssen
+Rutger Homma
+Paula Mieras
+Desley Nijssen
+Jun Fei Cheung
 ```
